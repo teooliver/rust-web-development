@@ -76,6 +76,7 @@ dependencies = [
 name = "collab"
 version = "0.1.0"
 dependencies = [
+ "handle-errors",
  "parking_lot 0.10.2",
  "serde",
  "serde_json",
@@ -206,6 +207,13 @@ dependencies = [
  "tokio",
  "tokio-util",
  "tracing",
+]
+
+[[package]]
+name = "handle-errors"
+version = "0.1.0"
+dependencies = [
+ "warp",
 ]
 
 [[package]]
