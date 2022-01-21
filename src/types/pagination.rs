@@ -1,5 +1,6 @@
-use handle_errors::Error;
 use std::collections::HashMap;
+
+use handle_errors::Error;
 
 /// Pagination struct which is getting extract
 /// from query params
