@@ -9,12 +9,12 @@ pub async fn add_answer(
     params: HashMap<String, String>,
 ) -> Result<impl warp::Reply, warp::Rejection> {
     let answer = Answer {
-        id: "CI001".to_string(),
         content: params.get("content").unwrap().to_string(),
-        question_id: params.get("questionId").unwrap().to_string(),
+        question_id: params.get("questionId").unwrap().parse().unwrap(),
     };
 
-    store.answers.write().insert(answer.clone().id, answer);
-
-    Ok(warp::reply::with_status("Answer added", StatusCode::OK))
+    match store.add_answer(answer).await {
+        Ok(_) => Ok(warp::reply::with_status("Answer added", StatusCode::OK)),
+        Err(e) => Err(warp::reject::custom(e)),
+    }
 }
